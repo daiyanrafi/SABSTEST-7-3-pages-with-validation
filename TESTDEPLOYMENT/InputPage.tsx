@@ -70,7 +70,7 @@ const InputPage: React.FC<InputPageProps> = ({ onSubmit, onNext }) => {
         Next
       </Button> */}
 
-<Grid container spacing={2}>
+      <Grid container spacing={2}>
         <Grid item>
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: '16px' }}>
             Next

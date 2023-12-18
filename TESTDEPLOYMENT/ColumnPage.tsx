@@ -76,7 +76,11 @@ const ColumnPage: React.FC = () => {
         {currentPage === 1 && <InputPage onSubmit={handleInputSubmit} onNext={() => setCurrentPage(2)} />}
         {currentPage === 2 && <InputTwoPage onSubmit={handleInputTwoSubmit} />}
         {currentPage === 1 || currentPage === 2 ? (
-          <Button variant="contained" onClick={handleBack}>
+          <Button 
+          variant="contained" 
+          onClick={handleBack}
+          style={{ marginTop: '16px' }}
+            >
             Back
           </Button>
         ) : null}

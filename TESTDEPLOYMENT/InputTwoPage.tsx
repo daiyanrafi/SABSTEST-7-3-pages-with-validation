@@ -1,7 +1,7 @@
 // InputTwoPage.tsx
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { TextField, Button, FormHelperText } from '@mui/material';
+import { TextField, Button, FormHelperText, Grid } from '@mui/material';
 
 interface InputTwoPageProps {
   onSubmit: (data: { school: string; college: string }) => void;
@@ -50,9 +50,20 @@ const InputTwoPage: React.FC<InputTwoPageProps> = ({ onSubmit }) => {
         </FormHelperText>
       )}
 
-      <Button type="submit" variant="contained" color="primary">
+      {/* <Button type="submit" variant="contained" color="primary">
         Submit
-      </Button>
+      </Button> */}
+
+      <Grid container spacing={2}>
+        <Grid item>
+          <Button type="submit" variant="contained" color="primary" style={{ marginTop: '16px' }}>
+            Submit
+          </Button>
+        </Grid>
+        {/* <Grid item>
+      
+        </Grid> */}
+      </Grid>
     </form>
   );
 };
