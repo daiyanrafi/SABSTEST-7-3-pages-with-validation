@@ -44,6 +44,7 @@ const ColumnPage: React.FC = () => {
   const handleEditClick = (id: number) => {
     const itemToEdit = data.find((item) => item.id === id);
     setCurrentEditItem(itemToEdit ?? null);
+    // setCurrentEditItem(itemToEdit ? { ...itemToEdit } : null); //remove korte hbe, uporer line correct
     setCurrentPage(1);
   };
 
@@ -53,7 +54,7 @@ const ColumnPage: React.FC = () => {
         item.id === currentEditItem.id ? { ...item, ...inputData } : item
       );
       setData(updatedData);
-      // setCurrentEditItem(null);
+      // setCurrentEditItem(null); //remove korte hbe
     } else {
       const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
       const newDate = new Date();

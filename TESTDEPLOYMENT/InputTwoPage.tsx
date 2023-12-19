@@ -23,6 +23,7 @@ const InputTwoPage: React.FC<InputTwoPageProps> = ({ onSubmit, editItem }) => {
   } = useForm<FormInputs>();
 
   React.useEffect(() => {
+        // Check if school and college are defined, otherwise, set an empty string
     if (editItem) {
       setValue('school', editItem.school || '');
       setValue('college', editItem.college || '');
