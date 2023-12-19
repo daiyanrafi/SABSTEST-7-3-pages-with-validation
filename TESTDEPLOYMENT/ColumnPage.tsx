@@ -43,7 +43,7 @@ const ColumnPage: React.FC = () => {
 
   const handleEditClick = (id: number) => {
     const itemToEdit = data.find((item) => item.id === id);
-    setCurrentEditItem(itemToEdit?? null);
+    setCurrentEditItem(itemToEdit ?? null);
     setCurrentPage(1);
   };
 
@@ -108,77 +108,80 @@ const ColumnPage: React.FC = () => {
   //   setCurrentPage(0);
   // };
 
-return (
-  <Grid container justifyContent="center" alignItems="flex-start" style={{ height: '100vh', marginTop: '40px' }}>
-    <Grid item xs={8}>
-      {currentPage === 0 && (
-        <Button variant="contained" color="primary" onClick={() => setCurrentPage(1)}>
-          Add Details
-        </Button>
-      )}
-      {currentPage === 1 && (
-        <InputPage onSubmit={handleInputSubmit} onNext={() => setCurrentPage(2)} editItem={currentEditItem} />
-      )}
-      {currentPage === 2 && (
-        <InputTwoPage onSubmit={handleInputTwoSubmit} editItem={currentEditItem}/>
-      )}
-      {(currentPage === 1 || currentPage === 2) && (
-        <Box display="flex" flexDirection="row" justifyContent="space-between" style={{ marginTop: "10px" }}>
-          <Button variant="contained" color="primary" onClick={handleBack}>
-            Back
+  return (
+    <Grid container justifyContent="center" alignItems="flex-start" style={{ height: '100vh', marginTop: '40px' }}>
+      <Grid item xs={8}>
+        {currentPage === 0 && (
+          <Button variant="contained" color="primary" onClick={() => setCurrentPage(1)}>
+            Add Details
           </Button>
-        </Box>
-      )}
-      {currentPage !== 1 && currentPage !== 2 && (
-        <TableContainer component={Paper} style={{ marginTop: '20px' }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Title</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>School</TableCell>
-                <TableCell>College</TableCell>
-                <TableCell>Created Date</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell>{row.id}</TableCell>
-                  <TableCell>{row.title}</TableCell>
-                  <TableCell>{row.description}</TableCell>
-                  <TableCell>{row.status}</TableCell>
-                  <TableCell>{row.school || '-'}</TableCell>
-                  <TableCell>{row.college || '-'}</TableCell>
-                  <TableCell>{row.createdDate.toLocaleString()}</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => handleEditClick(row.id)}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => handleDeleteClick(row.id)}
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
+        )}
+        {currentPage === 1 && (
+          <InputPage onSubmit={handleInputSubmit} onNext={() => setCurrentPage(2)} editItem={currentEditItem} />
+        )}
+        {currentPage === 2 && (
+          <InputTwoPage onSubmit={handleInputTwoSubmit} editItem={currentEditItem} />
+        )}
+        {(currentPage === 1 || currentPage === 2) && (
+          <Box display="flex" flexDirection="row" justifyContent="space-between" style={{ marginTop: "10px" }}>
+            <Button variant="contained" color="primary" onClick={handleBack}>
+              Back
+            </Button>
+          </Box>
+        )}
+        {currentPage !== 1 && currentPage !== 2 && (
+          <TableContainer component={Paper} style={{ marginTop: '20px' }}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Description</TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>School</TableCell>
+                  <TableCell>College</TableCell>
+                  <TableCell>Created Date</TableCell>
+                  <TableCell>Action</TableCell>
+                  {/* <TableCell sx={{ marginRight: '5px' }}>Action</TableCell> */}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
+              </TableHead>
+              <TableBody>
+                {data.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell>{row.title}</TableCell>
+                    <TableCell>{row.description}</TableCell>
+                    <TableCell>{row.status}</TableCell>
+                    <TableCell>{row.school || '-'}</TableCell>
+                    <TableCell>{row.college || '-'}</TableCell>
+                    <TableCell>{row.createdDate.toLocaleString()}</TableCell>
+                    <TableCell>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        sx={{ width: '60%', marginBottom: '8px' }} // Set width to 100% and add bottom margin
+                        onClick={() => handleEditClick(row.id)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        sx={{ width: '60%' }} // Set width to 100%
+                        onClick={() => handleDeleteClick(row.id)}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      </Grid>
     </Grid>
-  </Grid>
-);
+  );
 
 };
 
