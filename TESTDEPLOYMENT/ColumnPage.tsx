@@ -53,6 +53,7 @@ const ColumnPage: React.FC = () => {
         item.id === currentEditItem.id ? { ...item, ...inputData } : item
       );
       setData(updatedData);
+      // setCurrentEditItem(null);
     } else {
       const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
       const newDate = new Date();
@@ -78,10 +79,6 @@ const ColumnPage: React.FC = () => {
   const handleBack = () => {
     setCurrentPage(0);
   };
-
-
-
-  // const handleInputSubmit = (inputData: { title: string; description: string; status: string }) => {
   //   const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
   //   const newDate = new Date();
   //   const formattedData: UserData = { id: newId, createdDate: newDate, ...inputData };

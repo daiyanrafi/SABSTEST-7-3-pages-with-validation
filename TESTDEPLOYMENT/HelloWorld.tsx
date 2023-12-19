@@ -19,12 +19,10 @@ export default class HelloWorld extends React.Component<
     this.state = { events: [], registration: false, id: '' }
   }
 
-  
-
   public render() {
     return (
       <div>
-        <h1>hello world</h1>
+        <h1>Hello World</h1>
         <ColumnPage />
       </div>
     );
