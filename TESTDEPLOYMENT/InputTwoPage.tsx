@@ -2,9 +2,11 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { TextField, Button, FormHelperText, Grid } from '@mui/material';
+import { UserData } from './ColumnPage';
 
 interface InputTwoPageProps {
   onSubmit: (data: { school: string; college: string }) => void;
+  editItem?: UserData | null;
 }
 
 interface FormInputs {
@@ -12,12 +14,20 @@ interface FormInputs {
   college: string;
 }
 
-const InputTwoPage: React.FC<InputTwoPageProps> = ({ onSubmit }) => {
+const InputTwoPage: React.FC<InputTwoPageProps> = ({ onSubmit, editItem }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormInputs>();
+
+  React.useEffect(() => {
+    if (editItem) {
+      setValue('school', editItem.school || '');
+      setValue('college', editItem.college || '');
+    }
+  }, [editItem, setValue]);
 
   const handleFormSubmit: SubmitHandler<FormInputs> = (data) => {
     // Call the parent onSubmit function if validation passes
@@ -56,7 +66,7 @@ const InputTwoPage: React.FC<InputTwoPageProps> = ({ onSubmit }) => {
 
       <Grid container spacing={2}>
         <Grid item>
-          <Button type="submit" variant="contained" color="primary" style={{ marginTop: '16px' }}>
+          <Button type="submit" variant="contained" color="primary" sx={{ marginTop: "16px" }}>
             Submit
           </Button>
         </Grid>

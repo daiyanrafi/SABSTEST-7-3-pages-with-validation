@@ -2,10 +2,12 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { TextField, Button, FormHelperText, Grid } from '@mui/material';
+import { UserData } from './ColumnPage';
 
 interface InputPageProps {
   onSubmit: (data: { title: string; description: string; status: string }) => void;
   onNext: () => void;
+  editItem?: UserData | null; // Add this prop
 }
 
 interface FormInputs {
@@ -14,12 +16,21 @@ interface FormInputs {
   status: string;
 }
 
-const InputPage: React.FC<InputPageProps> = ({ onSubmit, onNext }) => {
+const InputPage: React.FC<InputPageProps> = ({ onSubmit, onNext, editItem }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormInputs>();
+
+  React.useEffect(() => {
+    if (editItem) {
+      setValue('title', editItem.title);
+      setValue('description', editItem.description);
+      setValue('status', editItem.status);
+    }
+  }, [editItem, setValue]);
 
   const handleFormSubmit: SubmitHandler<FormInputs> = (data) => {
     // Call the parent onSubmit function if validation passes
